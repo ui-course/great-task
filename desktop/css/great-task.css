@@ -6,3 +6,66 @@ body {
 	width: 50%;
 	margin-right: -1px;
 }
+
+.left-panel .panel-footer {
+	font-size: 30px;
+	letter-spacing: 7px;
+}
+
+.left-panel .panel-footer a {
+	text-decoration: none;
+	color: #444;
+}
+
+.time-table {
+	margin: -16px -15px -15px -15px;
+}
+
+.time-table .table {
+	margin: 0px;
+	font-size: 12px;
+	color: #333; 
+}
+
+.time-table .panel {
+	position: relative;
+	left: 50px;
+	top:-23px;
+	margin-right: 44px;
+	font-size: 14px;
+	padding: 10px;
+}
+
+.task-red {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+.task-light-blue {
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+
+.task-green {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+
+.panel.task-size-1 {
+	height: 30px;
+	margin-bottom: -30px;
+	padding-top: 5px;
+}
+
+.task-size-2 {
+	height: 63px;
+	margin-bottom: -63px;
+}
+
+.task-size-3 {
+	height: 97px;
+	margin-bottom: -97px;
+}
