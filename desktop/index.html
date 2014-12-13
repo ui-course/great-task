@@ -19,7 +19,7 @@
 			<div class="left-panel col-md-offset-1 col-md-5 col-lg-offset-1 col-lg-5">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<ul class="nav nav-pills" role="tablist">
+						<ul class="nav nav-pills" role="tablist" id="navtab">
 							<li role="presentation" class="active text-center">
 								<a href="#calendar" aria-controls="calendar" role="tab" data-toggle="tab">
 									Календарь
@@ -61,7 +61,7 @@
 										</tr>
 										<tr>
 											<td>07:00
-												<div class="panel task-red task-size-2">
+												<div class="panel task-light-blue task-size-2">
 													Зарядка, завтрак
 												</div>
 											</td>
@@ -90,8 +90,9 @@
 										</tr>
 										<tr>
 											<td>14:00
-												<div class="panel task-red task-size-2">
+												<div class="panel task-light-blue task-size-2">
 													Прогулка с собакой
+													<span class="label label-primary">Здоровье</span>
 												</div>
 											</td>
 										</tr>
@@ -100,7 +101,7 @@
 										</tr>
 										<tr>
 											<td>16:00
-												<div class="panel task-green task-size-3">
+												<div class="panel task-light-blue task-size-3">
 													Подготовиться к контрольной
 												</div>
 											</td>
@@ -116,8 +117,9 @@
 										</tr>
 										<tr>
 											<td>20:00
-												<div class="panel task-red task-size-1">
+												<div class="panel task-light-blue task-size-1">
 													Приготовить ужин
+													<span class="label label-primary">Готовка</span>
 												</div>
 											</td>
 										</tr>
@@ -151,13 +153,74 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-5 col-lg-5">
+			<div class="right-panel col-md-5 col-lg-5 col-lg-offset-6 col-md-offset-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4 class="text-center">Задачи</h4>
+						<form class="form-inline add-task" role="form">
+							<input type="text" class="form-control" placeholder="Новая задача">	
+							<a href="#" class="text-right"><i class="fa fa-plus-circle"></i></a>
+						</form>					
 					</div>
 					<div class="panel-body">
-						Задачи
+						<div class="list-group">
+							<p class="list-group-item main-tag">
+								Несортированные задачи
+								<a href="#" class="add-new-task"><i class="fa fa-plus-circle"></i></a>
+								<span class="badge">2</span>
+							</p>
+							<div class="offset-from-left">
+								<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+								<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+							</div>
+
+							<p href="#" class="list-group-item main-tag">
+								Задачи на сегодня
+								<a href="#" class="add-new-task"><i class="fa fa-plus-circle"></i></a>
+								<span class="badge">3</span>
+							</p>
+							<div class="offset-from-left">
+								<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+								<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+								<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+							</div>
+
+							<p href="#" class="list-group-item main-tag">
+								Все задачи
+								<a href="#" class="add-new-task"><i class="fa fa-plus-circle"></i></a>
+								<span class="badge">12</span>
+							</p>
+							<div class="offset-from-left">
+								<p href="#" class="list-group-item">
+									Тег 1
+									<a href="#" class="add-new-task"><i class="fa fa-plus-circle"></i></a>
+									<span class="badge">3</span>
+								</p>
+
+								<div class="offset-from-left">
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+								</div>
+
+								<p href="#" class="list-group-item">
+									Тег 2
+									<a href="#" class="add-new-task"><i class="fa fa-plus-circle"></i></a>
+									<span class="badge">9</span>
+								</p>
+
+								<div class="offset-from-left">
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+									<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
