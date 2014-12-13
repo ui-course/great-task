@@ -1,0 +1,8 @@
+body {
+	margin-top: 50px;
+}
+
+.nav-pills li {
+	width: 50%;
+	margin-right: -1px;
+}
