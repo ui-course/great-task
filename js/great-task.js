@@ -24,18 +24,18 @@ var setUpTabs = function () {
 
 
 var setUpDragAndDrop = function () {
-  $('.left-panel .sortable').sortable();
+  var taskForToday = _.template($('#today .template').text().trim());
 
+  $('.left-panel .sortable').sortable();
   $('.right-panel .sortable').sortable({
     connectWith: '.right-panel .sortable'
   });
 
   $('.droppable').droppable({
     accept: '.right-panel .task',
-    drop: function (event, ui) {
-      var template = $('.template', this).text().trim();
 
-      $('.list-group', this).append(_.template(template, {
+    drop: function (event, ui) {
+      $('.list-group', this).append(taskForToday({
         text: ui.draggable.text()
       }));
     }
