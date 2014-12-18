@@ -13,6 +13,9 @@
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+		<script type="text/template" id="task-template">
+			<li class="list-group-item task"><%= text %></li>
+		</script>
 	</head>
 	<body>
 		<div class="row">
@@ -136,9 +139,6 @@
 								</div>
 							</div>
 							<div role="tabpanel" class="tab-pane fade droppable" id="today">
-								<script type="text/template" class="template">
-									<li class="list-group-item task"><%= text %></li>
-								</script>
 								<ul class="list-group sortable"></ul>
 							</div>
 						</div>
@@ -159,10 +159,10 @@
 			<div class="right-panel col-md-5 col-lg-5 col-lg-offset-6 col-md-offset-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<form class="form-inline add-task" role="form">
+						<div class="form-inline add-task" id="quick-add" role="form">
 							<input type="text" class="form-control" placeholder="Новая задача">
-							<a href="#" class="text-right"><i class="fa fa-plus-circle"></i></a>
-						</form>
+							<a href="#" class="text-right" id="quick-add-button"><i class="fa fa-plus-circle"></i></a>
+						</div>
 					</div>
 					<div class="panel-body">
 						<div class="list-group">
@@ -171,7 +171,7 @@
 								<a href="#" class="add-new-task"><i class="fa fa-plus-circle"></i></a>
 								<span class="badge">2</span>
 							</p>
-							<ul class="offset-from-left sortable">
+							<ul class="offset-from-left sortable" id="unsorted">
 								<li class="list-group-item task">Porta ac consectetur ac</li>
 								<li class="list-group-item task">Porta ac consectetur ac</li>
 							</ul>

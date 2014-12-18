@@ -1,6 +1,8 @@
 var $leftPanel = $('.left-panel')
   , $rightPanel = $('.right-panel');
 
+var makeTask = _.template($('#task-template').text().trim());
+
 
 var fixSizes = function () {
   $(".left-panel .panel-body").height($(window).height()-220);
@@ -24,8 +26,6 @@ var setUpTabs = function () {
 
 
 var setUpDragAndDrop = function () {
-  var taskForToday = _.template($('#today .template').text().trim());
-
   $('.left-panel .sortable').sortable();
   $('.right-panel .sortable').sortable({
     connectWith: '.right-panel .sortable'
@@ -35,10 +35,31 @@ var setUpDragAndDrop = function () {
     accept: '.right-panel .task',
 
     drop: function (event, ui) {
-      $('.list-group', this).append(taskForToday({
+      $('.list-group', this).append(makeTask({
         text: ui.draggable.text()
       }));
     }
+  });
+};
+
+
+var setUpQuickTaskActions = function () {
+  var addQuickTask = function () {
+    $('#unsorted').append(makeTask({
+      text: $('#quick-add input').val()
+    }));
+  };
+
+  $('#quick-add input').keydown(function (event) {
+    if (event.which == 13) {
+      // [enter]
+      addQuickTask();
+    }
+  });
+
+  $('#quick-add-button').click(function (event) {
+    event.preventDefault();
+    addQuickTask();
   });
 };
 
@@ -47,6 +68,7 @@ $(function () {
   fixSizes();
   setUpTabs();
   setUpDragAndDrop();
+  setUpQuickTaskActions();
 
   $(window).resize(_.throttle(fixSizes, 100));
 });
