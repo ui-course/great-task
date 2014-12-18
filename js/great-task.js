@@ -68,6 +68,11 @@ var setUpQuickTaskActions = function () {
 };
 
 
+var showTipOfTheDay = function () {
+  $('#tip-of-the-day').modal();
+};
+
+
 $(function () {
   fixSizes();
   setUpTabs();
@@ -75,4 +80,6 @@ $(function () {
   setUpQuickTaskActions();
 
   $(window).resize(_.throttle(fixSizes, 100));
+
+  showTipOfTheDay();
 });
