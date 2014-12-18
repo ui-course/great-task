@@ -15,3 +15,7 @@ $("#navtab a:first").click(function (e) {
 	$(".left-panel").css("position", "fixed");
 	$(".right-panel").addClass("col-lg-offset-6 col-md-offset-6");
 });
+
+$('.sortable').sortable({
+  connectWith: '.sortable'
+});

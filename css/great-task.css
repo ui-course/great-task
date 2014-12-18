@@ -138,3 +138,7 @@ body {
 .offset-from-left {
 	margin-bottom: -1px;
 }
+
+.task {
+    cursor: pointer;
+}
