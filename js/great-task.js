@@ -35,6 +35,7 @@ var setUpDragAndDrop = function () {
     accept: '.right-panel .task',
 
     drop: function (event, ui) {
+      $('.note', this).hide();
       $('.list-group', this).append(makeTask({
         text: ui.draggable.text()
       }));
