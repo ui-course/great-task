@@ -1,5 +1,5 @@
 $(window).resize(_.throttle(function () {
-  $(".time-table").height($(window).height()-220);
+  $(".left-panel .panel-body").height($(window).height()-220);
   $(".time-table").scrollTop(238);
   $(".form-inline.add-task input").width( $(".right-panel").width() - 91 );
 }, 100));
