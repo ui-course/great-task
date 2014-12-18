@@ -16,6 +16,19 @@ $("#navtab a:first").click(function (e) {
 	$(".right-panel").addClass("col-lg-offset-6 col-md-offset-6");
 });
 
-$('.sortable').sortable({
-  connectWith: '.sortable'
+$('.left-panel .sortable').sortable();
+
+$('.right-panel .sortable').sortable({
+  connectWith: '.right-panel .sortable'
+});
+
+$('.droppable').droppable({
+  accept: '.right-panel .task',
+  drop: function (event, ui) {
+    var template = $('.template', this).text().trim();
+
+    $('.list-group', this).append(_.template(template, {
+      text: ui.draggable.text()
+    }));
+  }
 });

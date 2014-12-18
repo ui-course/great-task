@@ -135,8 +135,11 @@
 									</table>
 								</div>
 							</div>
-							<div role="tabpanel" class="tab-pane fade" id="today">
-								Задачи на сегодня
+							<div role="tabpanel" class="tab-pane fade droppable" id="today">
+								<script type="text/template" class="template">
+									<li class="list-group-item task"><%= text %></li>
+								</script>
+								<ul class="list-group sortable"></ul>
 							</div>
 						</div>
 					</div>
