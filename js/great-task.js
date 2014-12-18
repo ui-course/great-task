@@ -26,12 +26,13 @@ var setUpTabs = function () {
 
 
 var setUpDragAndDrop = function () {
-  $('.left-panel .sortable').sortable();
-  $('.right-panel .sortable').sortable({
-    connectWith: '.right-panel .sortable'
+  $('.right-panel .task-list').sortable({
+    connectWith: '.right-panel .task-list'
   });
 
-  $('.droppable').droppable({
+  $('#today .task-list').sortable();
+
+  $('#today').droppable({
     accept: '.right-panel .task',
 
     drop: function (event, ui) {

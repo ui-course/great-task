@@ -168,3 +168,7 @@ body {
 .compound-task > ul > :first-child {
     border-top: none;
 }
+
+.task-list {
+    cursor: pointer;
+}
