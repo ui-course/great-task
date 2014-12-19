@@ -2,12 +2,19 @@ var $leftPanel = $('.left-panel')
   , $rightPanel = $('.right-panel');
 
 var makeTask = _.template($('#task-template').text().trim());
+var makeTaskInfo = _.template($('#task-info-template').text().trim());
 
 
 var fixSizes = function () {
   $(".left-panel .panel-body").height($(window).height()-220);
   $(".time-table").scrollTop(238);
   $(".form-inline.add-task input").width( $rightPanel.width() - 93 );
+};
+
+
+var fixControls = function ($context) {
+  $context = $context || $('body');
+  $('input[type="datetime"]', $context).datetimepicker();
 };
 
 
@@ -54,6 +61,13 @@ var setUpQuickTaskActions = function () {
   $toolbar.removeClass('hidden');
   $toolbar.hide();
 
+  $('.task-settings', $toolbar).replaceWith(makeTaskInfo({
+    startTime: '',
+    stopTime: '',
+    text: ''
+  }));
+  fixControls($toolbar);
+
   var addQuickTask = function () {
     $('#unsorted').append(makeTask({
       text: $input.val()
@@ -92,6 +106,26 @@ var setUpQuickTaskActions = function () {
 };
 
 
+var setUpEditing = function () {
+  var $modal = $('#task-info-modal');
+
+  $('.task').click(function () {
+    $('.modal-title', $modal).text($(this).text());
+    $('.modal-body', $modal).html(makeTaskInfo({
+      startTime: '12/26/2014 20:00',
+      stopTime: '01/05/2015 00:00',
+      text: 'Каникулы!'
+    }));
+
+    fixControls($modal);
+
+    $modal.modal({
+      backdrop: false
+    });
+  });
+1};
+
+
 var showTipOfTheDay = function () {
   var $modal = $('#tip-of-the-day');
 
@@ -111,11 +145,12 @@ var showTipOfTheDay = function () {
 
 $(function () {
   fixSizes();
+  fixControls();
   setUpTabs();
   setUpDragAndDrop();
   setUpQuickTaskActions();
+  setUpEditing();
 
-  $('input[type="datetime"]').datetimepicker();
   $(window).resize(_.throttle(fixSizes, 100));
 
   showTipOfTheDay();
