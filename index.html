@@ -166,7 +166,7 @@
 							<input type="text" class="form-control" placeholder="Новая задача">
 							<a href="#" class="text-right" id="quick-add-button"><i class="fa fa-plus-circle"></i></a>
 						</div>
-						<div class="hidden" id="task-editor-toolbar">
+						<div class="hidden" id="task-toolbar">
 							<div class="tags">
 								<div class="label label-success">друзья</div>
 								<div class="label label-warning">учёба</div>
@@ -175,9 +175,9 @@
 							</div>
 							<div class="form-horizontal task-settings" role="form">
 								<div class="form-group">
-									<label class="col-sm-5 control-label">Список</label>
+									<label for="task-toolbar-list" class="col-sm-5 control-label">Список</label>
 									<div class="col-sm-7 no-left-pad">
-										<select class="form-control">
+										<select id="task-toolbar-list" class="form-control">
 											<option>Несортированные задачи</option>
 											<option>Задачи на сегодня</option>
 											<option>Диссертация</option>
@@ -185,21 +185,21 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-5 control-label">Начало</label>
+									<label for="task-toolbar-starttime" class="col-sm-5 control-label">Начало</label>
 									<div class="col-sm-7 no-left-pad">
-										<input type="datetime" class="form-control"/>
+										<input type="datetime" id="task-toolbar-starttime" class="form-control"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-5 control-label">Окончание</label>
+									<label for="task-toolbar-stoptime" class="col-sm-5 control-label">Окончание</label>
 									<div class="col-sm-7 no-left-pad">
-										<input type="datetime" class="form-control"/>
+										<input type="datetime" id="task-toolbar-stoptime" class="form-control"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-5 control-label">Описание</label>
+									<label for="task-toolbar-memo" class="col-sm-5 control-label">Описание</label>
 									<div class="col-sm-7 no-left-pad">
-										<textarea class="form-control" rows="3"></textarea>
+										<textarea id="task-toolbar-memo" class="form-control" rows="3"></textarea>
 									</div>
 								</div>
 							</div>

@@ -49,7 +49,7 @@ var setUpDragAndDrop = function () {
 
 var setUpQuickTaskActions = function () {
   var $input = $('#quick-add input')
-    , $toolbar = $('#task-editor-toolbar');
+    , $toolbar = $('#task-toolbar');
 
   $toolbar.removeClass('hidden');
   $toolbar.hide();
