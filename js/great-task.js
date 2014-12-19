@@ -177,7 +177,10 @@ var setUpQuickTaskActions = function () {
 
     var task = {
       text: $input.val(),
-      tags: activeTags
+      tags: activeTags,
+      startTime: $('.task-toolbar-starttime', $toolbar).val(),
+      stopTime: $('.task-toolbar-stoptime', $toolbar).val(),
+      description: $('.task-toolbar-memo', $toolbar).val()
     };
     task.id = tasks.push(task) - 1;
 
