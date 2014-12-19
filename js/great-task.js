@@ -205,6 +205,9 @@ var setUpQuickTaskActions = function () {
 
     if (showToolbar) {
       $('.tags .label', $toolbar).removeClass('selected');
+      $('.task-toolbar-starttime', $toolbar).val('');
+      $('.task-toolbar-stoptime', $toolbar).val('');
+      $('.task-toolbar-memo', $toolbar).val('');
       $toolbar.show('fold');
     }
     else {
