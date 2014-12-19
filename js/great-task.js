@@ -74,9 +74,11 @@ var setUpQuickTaskActions = function () {
 
     if (showToolbar) {
       $('.tags .label', $toolbar).removeClass('selected');
+      $toolbar.show('fold');
     }
-
-    $toolbar.toggle(showToolbar);
+    else {
+      $toolbar.hide('fold', 50);
+    }
   });
 
   $('#quick-add-button').click(function (event) {
