@@ -24,6 +24,10 @@ var tags = {
   urgent: {
     value: 'срочно',
     cssClass: 'label-danger'
+  },
+  thesis: {
+    value: 'Диссертация',
+    cssClass: 'label-default'
   }
 };
 
@@ -50,18 +54,20 @@ var tasks = [
     tags: [tags.friends]
   },
   {
-    text: 'Получить результаты'
+    text: 'Получить результаты',
+    tags: [tags.thesis]
   },
   {
     text: 'Вывести расчётную формулу',
-    tags: [tags.study]
+    tags: [tags.study, tags.thesis]
   },
   {
     text: 'Написать программу',
-    tags: [tags.study]
+    tags: [tags.study, tags.thesis]
   },
   {
-    text: 'Подготовить доклад к конференции'
+    text: 'Подготовить доклад к конференции',
+    tags: [tags.thesis]
   }
 ];
 
@@ -116,11 +122,7 @@ var setUpTabs = function () {
 
 
 var setUpDragAndDrop = function () {
-  $('.right-panel .task-list').sortable({
-    connectWith: '.right-panel .task-list'
-  });
-
-  $('#today .task-list').sortable();
+  $('.task-list').sortable();
 
   $('#today').droppable({
     accept: '.right-panel .task',
@@ -162,7 +164,7 @@ var setUpQuickTaskActions = function () {
 
     var taskid = tasks.push(task) - 1;
 
-    $('#unsorted').append(renderTask(_.extend({ taskid: taskid }, task)));
+    $('#task-list').append(renderTask(_.extend({ taskid: taskid }, task)));
 
     // Clear input.
     $input.val('');
