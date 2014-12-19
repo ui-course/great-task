@@ -188,6 +188,11 @@ var setUpQuickTaskActions = function () {
 
   $input.on('input', function () {
     var showToolbar = !!$input.val().length;
+    var toolbarShown = !!$('#task-toolbar:visible').length;
+
+    if (showToolbar == toolbarShown) {
+      return;
+    }
 
     if (showToolbar) {
       $('.tags .label', $toolbar).removeClass('selected');
