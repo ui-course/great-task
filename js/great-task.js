@@ -7,7 +7,7 @@ var makeTask = _.template($('#task-template').text().trim());
 var fixSizes = function () {
   $(".left-panel .panel-body").height($(window).height()-220);
   $(".time-table").scrollTop(238);
-  $(".form-inline.add-task input").width( $rightPanel.width() - 91 );
+  $(".form-inline.add-task input").width( $rightPanel.width() - 93 );
 };
 
 
@@ -48,22 +48,44 @@ var setUpDragAndDrop = function () {
 
 
 var setUpQuickTaskActions = function () {
+  var $input = $('#quick-add input')
+    , $toolbar = $('#task-editor-toolbar');
+
+  $toolbar.removeClass('hidden');
+  $toolbar.hide();
+
   var addQuickTask = function () {
     $('#unsorted').append(makeTask({
-      text: $('#quick-add input').val()
+      text: $input.val()
     }));
+    $input.val('');
+    $input.trigger('input');
   };
 
-  $('#quick-add input').keydown(function (event) {
+  $input.keydown(function (event) {
     if (event.which == 13) {
       // [enter]
       addQuickTask();
     }
   });
 
+  $input.on('input', function () {
+    var showToolbar = !!$input.val().length;
+
+    if (showToolbar) {
+      $('.tags .label', $toolbar).removeClass('selected');
+    }
+
+    $toolbar.toggle(showToolbar);
+  });
+
   $('#quick-add-button').click(function (event) {
     event.preventDefault();
     addQuickTask();
+  });
+
+  $('.tags .label', $toolbar).click(function () {
+    $(this).toggleClass('selected');
   });
 };
 

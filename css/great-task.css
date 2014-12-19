@@ -96,10 +96,6 @@ body {
 	margin-bottom: -97px;
 }
 
-.right-panel .panel-heading {
-	height: 61px;
-}
-
 .right-panel .form-inline {
 	margin-top: 5px;
 }
@@ -171,4 +167,22 @@ body {
 
 .task-list {
     cursor: pointer;
+}
+
+div.label {
+    display: inline-block;
+}
+
+.hidden {
+    display: none;
+}
+
+.label {
+    cursor: default;
+}
+
+.label.selected {
+    outline: 1px solid black;
+    outline-offset: 1px;
+    color: black;
 }
