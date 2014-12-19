@@ -88,7 +88,9 @@ var renderTask = function (task) {
 
 
 var renderTaskInfo = function (task) {
-  return taskInfoTemplate(task);
+  var $taskInfo = $(taskInfoTemplate(task));
+  fixControls($taskInfo);
+  return $taskInfo;
 };
 
 
@@ -255,8 +257,6 @@ var showTaskInfo = (function () {
       stopTime: task.stopTime || '',
       text: task.description || ''
     }));
-
-    fixControls($modal);
 
     $modal.modal({
       backdrop: false
