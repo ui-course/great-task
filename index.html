@@ -16,7 +16,12 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<script type="text/template" id="task-template">
-			<li class="list-group-item task"><%= text %></li>
+			<li class="list-group-item task" data-taskid="${task.taskid}">
+				<%= task.text %>
+				<% _.forEach(task.tags || [], function (tag) { %>
+				<span class="label ${tag.cssClass}"><%= tag.value %></span>
+				<% }); %>
+			</li>
 		</script>
 		<script type="text/template" id="task-info-template">
 			<div class="form-horizontal task-settings" role="form">
@@ -200,10 +205,10 @@
 						</div>
 						<div class="hidden" id="task-toolbar">
 							<div class="tags">
-								<div class="label label-success">друзья</div>
-								<div class="label label-warning">учёба</div>
-								<div class="label label-info">работа</div>
-								<div class="label label-danger">срочно</div>
+								<div class="label label-success" data-tag="friends">друзья</div>
+								<div class="label label-warning" data-tag="study">учёба</div>
+								<div class="label label-info" data-tag="job">работа</div>
+								<div class="label label-danger" data-tag="urgent">срочно</div>
 							</div>
 							<div class="task-settings"></div>
 						</div>
@@ -215,12 +220,12 @@
 								<span class="badge">3</span>
 							</p>
 							<ul class="offset-from-left task-list" id="unsorted">
-								<li class="list-group-item task">Поговорить с Владимиром</li>
-								<li class="list-group-item task">
+								<li class="list-group-item task" data-taskid="0">Поговорить с Владимиром</li>
+								<li class="list-group-item task" data-taskid="1">
 									Купить подарок на НГ
 									<span class="label label-danger">срочно</span>
 								</li>
-								<li class="list-group-item task">Написать черновик эссе</li>
+								<li class="list-group-item task" data-taskid="2">Написать черновик эссе</li>
 							</ul>
 
 							<p href="#" class="list-group-item main-tag">
@@ -228,13 +233,13 @@
 								<span class="badge">3</span>
 							</p>
 							<ul class="offset-from-left task-list">
-								<li class="list-group-item task">
+								<li class="list-group-item task" data-taskid="3">
 									Доделать что-то очень важное
 									<span class="label label-info">работа</span>
 									<span class="label label-danger">срочно</span>
 								</li>
-								<li class="list-group-item task">Прогулка с собакой</li>
-								<li class="list-group-item task">
+								<li class="list-group-item task" data-taskid="4">Прогулка с собакой</li>
+								<li class="list-group-item task" data-taskid="5">
 									Клуб «Охотник», вечерний покер
 									<span class="label label-success">друзья</span>
 								</li>
@@ -245,18 +250,18 @@
 								<span class="badge">3</span>
 							</p>
 							<ul class="offset-from-left task-list">
-								<li class="list-group-item">
+								<li class="list-group-item" data-taskid="6">
 									Получить результаты
 									<span class="badge">2</span>
 								</li>
 
 								<li class="list-group-item compound-task">
 									<ul class="offset-from-left task-list">
-										<li class="list-group-item task">
+										<li class="list-group-item task" data-taskid="7">
 											Вывести расчётную формулу
 											<span class="label label-warning">учёба</span>
 										</li>
-										<li class="list-group-item task">
+										<li class="list-group-item task" data-taskid="8">
 											Написать программу
 											<span class="label label-warning">учёба</span>
 										</li>
@@ -264,7 +269,7 @@
 								</li>
 
 
-								<li class="list-group-item task">
+								<li class="list-group-item task" data-taskid="9">
 									Подготовить доклад к конференции
 								</li>
 							</ul>

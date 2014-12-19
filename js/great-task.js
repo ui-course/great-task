@@ -1,8 +1,79 @@
 var $leftPanel = $('.left-panel')
   , $rightPanel = $('.right-panel');
 
-var makeTask = _.template($('#task-template').text().trim());
-var makeTaskInfo = _.template($('#task-info-template').text().trim());
+var taskTemplate = _.template($('#task-template').text().trim(), null, {
+  variable: 'task'
+});
+
+var taskInfoTemplate = _.template($('#task-info-template').text().trim());
+
+
+var tags = {
+  friends: {
+    value: 'друзья',
+    cssClass: 'label-success'
+  },
+  study: {
+    value: 'учёба',
+    cssClass: 'label-warning'
+  },
+  job: {
+    value: 'работа',
+    cssClass: 'label-info'
+  },
+  urgent: {
+    value: 'срочно',
+    cssClass: 'label-danger'
+  }
+};
+
+var tasks = [
+  {
+    text: 'Поговорить с Владимиром'
+  },
+  {
+    text: 'Купить подарок на НГ',
+    tags: [tags.urgent]
+  },
+  {
+    text: 'Написать черновик эссе'
+  },
+  {
+    text: 'Доделать что-то очень важное',
+    tags: [tags.job, tags.urgent]
+  },
+  {
+    text: 'Прогулка с собакой'
+  },
+  {
+    text: 'Клуб «Охотник», вечерний покер',
+    tags: [tags.friends]
+  },
+  {
+    text: 'Получить результаты'
+  },
+  {
+    text: 'Вывести расчётную формулу',
+    tags: [tags.study]
+  },
+  {
+    text: 'Написать программу',
+    tags: [tags.study]
+  },
+  {
+    text: 'Подготовить доклад к конференции'
+  }
+];
+
+
+var renderTask = function (task) {
+  return taskTemplate(task);
+};
+
+
+var renderTaskInfo = function (task) {
+  return taskInfoTemplate(task);
+};
 
 
 var guid = (function () {
@@ -56,7 +127,7 @@ var setUpDragAndDrop = function () {
 
     drop: function (event, ui) {
       $('.note', this).hide();
-      $('.list-group', this).append(makeTask({
+      $('.list-group', this).append(renderTask({
         text: ui.draggable.text()
       }));
     }
@@ -71,7 +142,7 @@ var setUpQuickTaskActions = function () {
   $toolbar.removeClass('hidden');
   $toolbar.hide();
 
-  $('.task-settings', $toolbar).replaceWith(makeTaskInfo({
+  $('.task-settings', $toolbar).replaceWith(renderTaskInfo({
     id: guid(),
     startTime: '',
     stopTime: '',
@@ -80,9 +151,20 @@ var setUpQuickTaskActions = function () {
   fixControls($toolbar);
 
   var addQuickTask = function () {
-    $('#unsorted').append(makeTask({
-      text: $input.val()
-    }));
+    var activeTags = $('.tags .label.selected', $toolbar).map(function () {
+      return tags[$(this).data('tag')];
+    });
+
+    var task = {
+      text: $input.val(),
+      tags: activeTags
+    };
+
+    var taskid = tasks.push(task) - 1;
+
+    $('#unsorted').append(renderTask(_.extend({ taskid: taskid }, task)));
+
+    // Clear input.
     $input.val('');
     $input.trigger('input');
   };
@@ -122,7 +204,7 @@ var setUpEditing = function () {
 
   $('.task').click(function () {
     $('.modal-title', $modal).text($(this).text());
-    $('.modal-body', $modal).html(makeTaskInfo({
+    $('.modal-body', $modal).html(renderTaskInfo({
       id: guid(),
       startTime: '12/26/2014 20:00',
       stopTime: '01/05/2015 00:00',
