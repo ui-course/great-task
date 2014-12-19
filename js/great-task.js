@@ -99,7 +99,6 @@ var guid = (function () {
 var fixSizes = function () {
   $(".left-panel .panel-body").height($(window).height()-220);
   $(".time-table").scrollTop(238);
-  $(".form-inline.add-task input").width( $rightPanel.width() - 93 );
 };
 
 

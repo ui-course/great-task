@@ -203,3 +203,11 @@ div.label {
 .no-left-pad {
     padding-left: 0;
 }
+
+.add-task {
+    display: flex;
+}
+
+.add-task input {
+    width: 100% !important;
+}
