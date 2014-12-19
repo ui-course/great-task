@@ -69,7 +69,19 @@ var setUpQuickTaskActions = function () {
 
 
 var showTipOfTheDay = function () {
-  $('#tip-of-the-day').modal();
+  var $modal = $('#tip-of-the-day');
+
+  $modal.on('shown.bs.modal', function () {
+    $('body').keydown(function handler(event) {
+      if (event.which == 13 || event.which == 27) {
+        // [enter] or [esc]
+        $('body').off('keydown', handler);
+        $modal.modal('hide');
+      }
+    });
+  });
+
+  $modal.modal('show');
 };
 
 
