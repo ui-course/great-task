@@ -16,7 +16,7 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<script type="text/template" id="task-template">
-			<li class="list-group-item task" data-taskid="${task.taskid}">
+			<li class="list-group-item task" data-taskid="${task.id}">
 				<%= task.text %>
 				<% _.forEach(task.tags || [], function (tag) { %>
 				<span class="label ${tag.cssClass}"><%= tag.value %></span>

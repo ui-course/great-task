@@ -29,38 +29,48 @@ var tags = {
 
 var tasks = [
   {
+    id: 0,
     text: 'Поговорить с Владимиром'
   },
   {
+    id: 1,
     text: 'Купить подарок на НГ',
     tags: [tags.urgent]
   },
   {
+    id: 2,
     text: 'Написать черновик эссе'
   },
   {
+    id: 3,
     text: 'Доделать что-то очень важное',
     tags: [tags.job, tags.urgent]
   },
   {
+    id: 4,
     text: 'Прогулка с собакой'
   },
   {
+    id: 5,
     text: 'Клуб «Охотник», вечерний покер',
     tags: [tags.friends]
   },
   {
+    id: 6,
     text: 'Получить результаты'
   },
   {
+    id: 7,
     text: 'Вывести расчётную формулу',
     tags: [tags.study]
   },
   {
+    id: 8,
     text: 'Написать программу',
     tags: [tags.study]
   },
   {
+    id: 9,
     text: 'Подготовить доклад к конференции'
   }
 ];
@@ -127,9 +137,9 @@ var setUpDragAndDrop = function () {
 
     drop: function (event, ui) {
       $('.note', this).hide();
-      $('.list-group', this).append(renderTask({
-        text: ui.draggable.text()
-      }));
+
+      var task = tasks[ui.draggable.data('taskid')];
+      $('.list-group', this).append(renderTask(task));
     }
   });
 };
@@ -159,10 +169,9 @@ var setUpQuickTaskActions = function () {
       text: $input.val(),
       tags: activeTags
     };
+    task.id = tasks.push(task) - 1;
 
-    var taskid = tasks.push(task) - 1;
-
-    $('#unsorted').append(renderTask(_.extend({ taskid: taskid }, task)));
+    $('#unsorted').append(renderTask(task));
 
     // Clear input.
     $input.val('');
