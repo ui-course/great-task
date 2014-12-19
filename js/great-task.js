@@ -5,6 +5,16 @@ var makeTask = _.template($('#task-template').text().trim());
 var makeTaskInfo = _.template($('#task-info-template').text().trim());
 
 
+var guid = (function () {
+  var id = 0;
+
+  return function () {
+    // Yeah, this is not thread-safe, lol.
+    return id++;
+  };
+}());
+
+
 var fixSizes = function () {
   $(".left-panel .panel-body").height($(window).height()-220);
   $(".time-table").scrollTop(238);
@@ -62,6 +72,7 @@ var setUpQuickTaskActions = function () {
   $toolbar.hide();
 
   $('.task-settings', $toolbar).replaceWith(makeTaskInfo({
+    id: guid(),
     startTime: '',
     stopTime: '',
     text: ''
@@ -112,6 +123,7 @@ var setUpEditing = function () {
   $('.task').click(function () {
     $('.modal-title', $modal).text($(this).text());
     $('.modal-body', $modal).html(makeTaskInfo({
+      id: guid(),
       startTime: '12/26/2014 20:00',
       stopTime: '01/05/2015 00:00',
       text: 'Каникулы!'
