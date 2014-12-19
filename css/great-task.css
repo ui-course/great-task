@@ -186,3 +186,20 @@ div.label {
     outline-offset: 1px;
     color: black;
 }
+
+.tags {
+    margin: 5px 0 10px;
+    text-align: center;
+}
+
+.tags > :nth-child(n+2) {
+    margin-left: 4px;
+}
+
+.control-label {
+    font-weight: normal;
+}
+
+.no-left-pad {
+    padding-left: 0;
+}

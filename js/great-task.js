@@ -113,6 +113,7 @@ $(function () {
   setUpDragAndDrop();
   setUpQuickTaskActions();
 
+  $('input[type="datetime"]').datetimepicker();
   $(window).resize(_.throttle(fixSizes, 100));
 
   showTipOfTheDay();
