@@ -135,7 +135,7 @@ var setUpEditing = function () {
       backdrop: false
     });
   });
-1};
+};
 
 
 var showTipOfTheDay = function () {
