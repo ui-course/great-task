@@ -26,6 +26,16 @@
 		<script type="text/template" id="task-info-template">
 			<div class="form-horizontal task-settings" role="form">
 				<div class="form-group">
+					<label for="task-toolbar-list" class="col-sm-5 control-label">Список</label>
+					<div class="col-sm-7 no-left-pad">
+						<select id="task-toolbar-list" class="form-control">
+							<option>Несортированные задачи</option>
+							<option>Задачи на сегодня</option>
+							<option>Диссертация</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="task-toolbar-starttime-${id}" class="col-sm-5 control-label">Начало</label>
 					<div class="col-sm-7 no-left-pad">
 						<input type="datetime" id="task-toolbar-starttime-${id}" class="form-control" value="${startTime}"/>
@@ -199,7 +209,6 @@
 								<div class="label label-warning" data-tag="study">учёба</div>
 								<div class="label label-info" data-tag="job">работа</div>
 								<div class="label label-danger" data-tag="urgent">срочно</div>
-								<div class="label label-default" data-tag="thesis">диссертация</div>
 							</div>
 							<div class="task-settings"></div>
 						</div>
