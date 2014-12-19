@@ -77,7 +77,13 @@ var tasks = [
 
 
 var renderTask = function (task) {
-  return taskTemplate(task);
+  var $task = $(taskTemplate(task));
+
+  $task.click(function () {
+    showTaskInfo(task);
+  });
+
+  return $task;
 };
 
 
@@ -216,16 +222,32 @@ var setUpQuickTaskActions = function () {
 };
 
 
-var setUpEditing = function () {
+/**
+ * Sets up handlers for existing tasks.
+ */
+var setUpExistingTasks = function () {
+  $('.task').click(function () {
+    var task = tasks[$(this).data('taskid')];
+    showTaskInfo(task);
+  });
+};
+
+
+/**
+ * Open modal window with information about the task.
+ *
+ * @arg {Task} task
+ */
+var showTaskInfo = (function () {
   var $modal = $('#task-info-modal');
 
-  $('.task').click(function () {
-    $('.modal-title', $modal).text($(this).text());
+  return function (task) {
+    $('.modal-title', $modal).text(task.text);
     $('.modal-body', $modal).html(renderTaskInfo({
       id: guid(),
-      startTime: '12/26/2014 20:00',
-      stopTime: '01/05/2015 00:00',
-      text: 'Каникулы!'
+      startTime: task.startTime || '',
+      stopTime: task.stopTime || '',
+      text: task.description || ''
     }));
 
     fixControls($modal);
@@ -233,8 +255,8 @@ var setUpEditing = function () {
     $modal.modal({
       backdrop: false
     });
-  });
-};
+  };
+}());
 
 
 var showTipOfTheDay = function () {
@@ -260,7 +282,7 @@ $(function () {
   setUpTabs();
   setUpDragAndDrop();
   setUpQuickTaskActions();
-  setUpEditing();
+  setUpExistingTasks();
 
   $(window).resize(_.throttle(fixSizes, 100));
 
