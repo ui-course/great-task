@@ -159,6 +159,11 @@ var setUpQuickTaskActions = function () {
   }));
   fixControls($toolbar);
 
+  var clearInput = function () {
+    $input.val('');
+    $input.trigger('input');
+  };
+
   var addQuickTask = function () {
     var activeTags = $('.tags .label.selected', $toolbar).map(function () {
       return tags[$(this).data('tag')];
@@ -171,10 +176,7 @@ var setUpQuickTaskActions = function () {
     task.id = tasks.push(task) - 1;
 
     $('#unsorted').append(renderTask(task));
-
-    // Clear input.
-    $input.val('');
-    $input.trigger('input');
+    clearInput();
   };
 
   $input.keydown(function (event) {
@@ -200,6 +202,8 @@ var setUpQuickTaskActions = function () {
     event.preventDefault();
     addQuickTask();
   });
+
+  $('#clear-input-button').click(clearInput);
 
   $('.tags .label', $toolbar).click(function () {
     $(this).toggleClass('selected');
