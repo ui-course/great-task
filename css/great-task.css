@@ -149,7 +149,8 @@ body {
     height: 100%;
 }
 
-.tab-pane {
+.tab-pane,
+.time-table {
     height: 100%;
 }
 
