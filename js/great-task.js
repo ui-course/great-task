@@ -110,9 +110,23 @@ var renderTask = function (task) {
 };
 
 
+// TODO(eush77): This is NOT a Tags object actually. Fix it to be one.
 var renderTaskInfo = function (task) {
   var $taskInfo = $(taskInfoTemplate(task));
+
   fixControls($taskInfo);
+
+  var $tags = $taskInfo.filter('.tags');
+
+  $('.label', $tags).filter(function () {
+    var tagValue = tags[$(this).data('tag')].value;
+    return task.tags.some(function (tag) {
+      // TODO(eush77): This is bad.
+      // Find another way to compare tags.
+      return tag.value == tagValue;
+    });
+  }).addClass('selected');
+
   return $taskInfo;
 };
 
@@ -246,13 +260,14 @@ var setUpQuickTaskActions = function () {
   $toolbar.removeClass('hidden');
   $toolbar.hide();
 
-  $('.task-settings', $toolbar).replaceWith(renderTaskInfo({
+  $toolbar.append(renderTaskInfo({
     id: guid(),
     startTime: '',
     stopTime: '',
     text: '',
     repeat_times: '',
     repeat_days: '',
+    tags: []
   }));
   fixControls($toolbar);
 
@@ -314,10 +329,6 @@ var setUpQuickTaskActions = function () {
   });
 
   $('#clear-input-button').click(clearInput);
-
-  $('.tags .label', $toolbar).click(function () {
-    $(this).toggleClass('selected');
-  });
 };
 
 
@@ -397,7 +408,8 @@ var showTaskInfo = (function () {
       stopTime: task.stopTime || '',
       repeat_times: task.repeat_times || '',
       repeat_days: task.repeat_days || '',
-      text: task.description || ''
+      text: task.description || '',
+      tags: task.tags || []
     }));
 
     // In order to prevent the mess, each listener must be called
@@ -451,7 +463,8 @@ var showSuggestion = (function () {
       stopTime: task.stopTime || '',
       repeat_times: task.repeat_times || '',
       repeat_days: task.repeat_days || '',
-      text: task.description || ''
+      text: task.description || '',
+      tags: task.tags || []
     }));
 
     // Disable all input fields.
