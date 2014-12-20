@@ -1,17 +1,17 @@
 var $leftPanel = $('.left-panel')
   , $rightPanel = $('.right-panel');
 
-var taskTemplate = _.template($('#task-template').text().trim(), null, {
-  variable: 'task'
-});
+var loadTemplate = function (selector, options) {
+  options = options || {};
+  var text = $(selector).text().trim();
+  return _.template(text, null, options);
+};
 
-var taskTagTemplate = _.template($('#task-tag-template').text().trim());
-
-var taskInfoTemplate = _.template($('#task-info-template').text().trim());
-
-var timetableEntryTemplate = _.template($('#timetable-entry-template').text().trim());
-
-var timetableSuggestionEntryTemplate = _.template($('#timetable-suggestion-entry-template').text().trim());
+var taskTemplate = loadTemplate('#task-template', { variable: 'task' });
+var taskTagTemplate = loadTemplate('#task-tag-template');
+var taskInfoTemplate = loadTemplate('#task-info-template');
+var timetableEntryTemplate = loadTemplate('#timetable-entry-template');
+var timetableSuggestionEntryTemplate = loadTemplate('#timetable-suggestion-entry-template');
 
 
 var tags = {
