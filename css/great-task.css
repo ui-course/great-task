@@ -274,3 +274,7 @@ div.label {
 .tag-panel .panel-heading {
     cursor: pointer;
 }
+
+#task-toolbar {
+    text-align: center;
+}

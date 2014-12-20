@@ -284,7 +284,9 @@ var setUpQuickTaskActions = function () {
   $toolbar.hide();
   $('#clear-input-button').hide();
 
-  $toolbar.append(renderTaskInfo({
+  console.log($('.task-settings', $toolbar));
+
+  $('.task-settings', $toolbar).replaceWith(renderTaskInfo({
     id: guid(),
     startTime: '',
     stopTime: '',
@@ -353,6 +355,8 @@ var setUpQuickTaskActions = function () {
     event.preventDefault();
     addQuickTask();
   });
+
+  $('#add-button').click(addQuickTask);
 
   $('#clear-input-button').click(clearInput);
 };
