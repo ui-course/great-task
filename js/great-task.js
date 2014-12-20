@@ -302,7 +302,7 @@ var setUpQuickTaskActions = function () {
   var addQuickTask = function () {
     var activeTags = $('.tags .label.selected', $toolbar).map(function () {
       return tags[$(this).data('tag')];
-    });
+    }).get();
 
     var task = {
       text: $input.val(),
