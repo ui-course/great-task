@@ -5,6 +5,8 @@ var taskTemplate = _.template($('#task-template').text().trim(), null, {
   variable: 'task'
 });
 
+var taskTagTemplate = _.template($('#task-tag-template').text().trim());
+
 var taskInfoTemplate = _.template($('#task-info-template').text().trim());
 
 var timetableEntryTemplate = _.template($('#timetable-entry-template').text().trim());
@@ -110,6 +112,11 @@ var renderTask = function (task) {
 };
 
 
+var renderTaskTag = function (tag) {
+  return $(taskTagTemplate(tag));
+};
+
+
 // TODO(eush77): This is NOT a Tags object actually. Fix it to be one.
 var renderTaskInfo = function (task) {
   var $taskInfo = $(taskInfoTemplate(task));
@@ -208,6 +215,16 @@ var fixControls = function ($context) {
 };
 
 
+/**
+ * Add task's tags to the tag element.
+ */
+var addTags = function ($task, tags) {
+  tags.map(function (tag) {
+    renderTaskTag(tag).appendTo($task);
+  });
+};
+
+
 var setUpTabs = function () {
   $("#navtab a:last").click(function (e) {
     $leftPanel.css("position", "relative");
@@ -238,7 +255,9 @@ var setUpDragAndDrop = function () {
       $('.note', this).hide();
 
       var task = tasks[ui.draggable.data('taskid')];
-      $('.list-group', this).append(renderTask(task));
+      var $task = renderTask(task);
+      addTags($task, task.tags || []);
+      $('.list-group', this).append($task);
     }
   });
 
