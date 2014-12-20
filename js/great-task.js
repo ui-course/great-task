@@ -260,6 +260,11 @@ var showTaskInfo = (function () {
       text: task.description || ''
     }));
 
+    // In order to prevent the mess, each listener must be called
+    // either once or zero times per modal invocation.
+    // Hence we need to remove unused listeners here - so that
+    // they won't clutter the things later.
+
     var ok = function () {
       $cancelButton.off('click', cancel);
 
