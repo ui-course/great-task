@@ -232,14 +232,12 @@ var addTags = function ($task, tags) {
 
 var setUpTabs = function () {
   $("#navtab a:last").click(function (e) {
-    $leftPanel.css("position", "relative");
-    $rightPanel.removeClass("col-lg-offset-6 col-md-offset-6");
+    $rightPanel.addClass("col-lg-offset-6 col-md-offset-6");
     $('html, body').animate({scrollTop:0}, "fast");
     fixSizes();
   });
 
   $("#navtab a:first").click(function (e) {
-    $leftPanel.css("position", "fixed");
     $rightPanel.addClass("col-lg-offset-6 col-md-offset-6");
     fixSizes();
   });
