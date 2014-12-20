@@ -9,6 +9,8 @@ var taskInfoTemplate = _.template($('#task-info-template').text().trim());
 
 var timetableEntryTemplate = _.template($('#timetable-entry-template').text().trim());
 
+var timetableSuggestionEntryTemplate = _.template($('#timetable-suggestion-entry-template').text().trim());
+
 
 var tags = {
   friends: {
@@ -123,6 +125,19 @@ var renderTimetableEntry = function (task) {
   $('.span-down', $entry).click(function (event) {
     makeLonger();
     event.stopPropagation();
+  });
+
+  return $entry;
+};
+
+
+var renderTimetableSuggestionEntry = function (task) {
+  var $entry = $(timetableSuggestionEntryTemplate(task));
+
+  task.$timetableSuggestionEntry = $entry;
+
+  $entry.click(function () {
+    showSuggestion(task);
   });
 
   return $entry;
@@ -324,6 +339,53 @@ var showTaskInfo = (function () {
       task.startTime = $('.task-toolbar-starttime', $modal).val();
       task.stopTime = $('.task-toolbar-stoptime', $modal).val();
       task.description = $('.task-toolbar-memo', $modal).val();
+    };
+
+    var cancel = function () {
+      $okButton.off('click', ok);
+    };
+
+    $($okButton, $modal).one('click', ok);
+    $($cancelButton, $modal).one('click', cancel);
+
+    $modal.modal({
+      backdrop: false
+    });
+  };
+}());
+
+
+/**
+ * Show suggestion window.
+ * Ask the user if he wants to add this task to
+ * the timetable.
+ *
+ * @arg {Task} task
+ */
+var showSuggestion = (function () {
+  var $modal = $('#suggestion-modal');
+  var $okButton = $('button.ok', $modal);
+  var $cancelButton = $('button.cancel', $modal);
+
+  // TODO(eush77): Get rid of immense code duplication here.
+  return function (task) {
+    $('#suggestion-modal-title', $modal).text(task.text);
+    $('.task-info', $modal).html(renderTaskInfo({
+      id: guid(),
+      startTime: task.startTime || '',
+      stopTime: task.stopTime || '',
+      text: task.description || ''
+    }));
+
+    // Disable all input fields.
+    $('.task-info .form-control').attr('disabled', true);
+
+    // See the comment in showTaskInfo() for clarification.
+
+    var ok = function () {
+      $cancelButton.off('click', cancel);
+
+      task.$timetableSuggestionEntry.replaceWith(renderTimetableEntry(task));
     };
 
     var cancel = function () {

@@ -80,6 +80,12 @@ body {
 	border-color: #2e6da4;
 }
 
+.task-yellow {
+	color: #31708f;
+	background-color: #dceb74;
+	border-color: #91B818;
+}
+
 .panel.task-size-1 {
 	height: 30px;
 	margin-bottom: -30px;
@@ -238,5 +244,10 @@ div.label {
     position: absolute;
     bottom: 0;
     right: 3px;
+    cursor: pointer;
+}
+
+.suggestion {
+    font-style: italic;
     cursor: pointer;
 }
