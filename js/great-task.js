@@ -282,6 +282,7 @@ var setUpQuickTaskActions = function () {
 
   $toolbar.removeClass('hidden');
   $toolbar.hide();
+  $('#clear-input-button').hide();
 
   $toolbar.append(renderTaskInfo({
     id: guid(),
@@ -340,9 +341,11 @@ var setUpQuickTaskActions = function () {
       $('.task-toolbar-stoptime', $toolbar).val('');
       $('.task-toolbar-memo', $toolbar).val('');
       $toolbar.show('fold');
+      $('#clear-input-button').show();
     }
     else {
       $toolbar.hide('fold', 50);
+      $('#clear-input-button').hide();
     }
   });
 
