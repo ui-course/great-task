@@ -9,6 +9,8 @@ var taskInfoTemplate = _.template($('#task-info-template').text().trim());
 
 var timetableEntryTemplate = _.template($('#timetable-entry-template').text().trim());
 
+var timetableSuggestionEntryTemplate = _.template($('#timetable-suggestion-entry-template').text().trim());
+
 
 var tags = {
   friends: {
@@ -123,6 +125,19 @@ var renderTimetableEntry = function (task) {
   $('.span-down', $entry).click(function (event) {
     makeLonger();
     event.stopPropagation();
+  });
+
+  return $entry;
+};
+
+
+var renderTimetableSuggestionEntry = function (task) {
+  var $entry = $(timetableSuggestionEntryTemplate(task));
+
+  task.$timetableSuggestionEntry = $entry;
+
+  $entry.click(function () {
+    showSuggestion(task);
   });
 
   return $entry;
@@ -292,6 +307,27 @@ var setUpExistingTasks = function () {
 
 
 /**
+ * Set up existing timetable entries.
+ */
+var setUpTimetable = function () {
+  // Child number below are hard-coded.
+  // The rule is, nth-child(X+2) gets you to X o'clock.
+
+  // Set essay task for 1 hour at 11:00.
+  var essayTask = _.extend(tasks[2], { duration: 1});
+  $('.time-table tr:nth-child(13) td').append(renderTimetableEntry(essayTask));
+
+  // Set job task for 3 hours 17:00-20:00.
+  var jobTask = _.extend(tasks[3], { duration: 3 });
+  $('.time-table tr:nth-child(19) td').append(renderTimetableEntry(jobTask));
+
+  // Set dog task as a suggestion at 20:00.
+  var dogTask = _.extend(tasks[4], { duration: 1 });
+  $('.time-table tr:nth-child(21) td').append(renderTimetableSuggestionEntry(dogTask));
+};
+
+
+/**
  * Open modal window with information about the task.
  *
  * @arg {Task} task
@@ -340,6 +376,53 @@ var showTaskInfo = (function () {
 }());
 
 
+/**
+ * Show suggestion window.
+ * Ask the user if he wants to add this task to
+ * the timetable.
+ *
+ * @arg {Task} task
+ */
+var showSuggestion = (function () {
+  var $modal = $('#suggestion-modal');
+  var $okButton = $('button.ok', $modal);
+  var $cancelButton = $('button.cancel', $modal);
+
+  // TODO(eush77): Get rid of immense code duplication here.
+  return function (task) {
+    $('#suggestion-modal-title', $modal).text(task.text);
+    $('.task-info', $modal).html(renderTaskInfo({
+      id: guid(),
+      startTime: task.startTime || '',
+      stopTime: task.stopTime || '',
+      text: task.description || ''
+    }));
+
+    // Disable all input fields.
+    $('.task-info .form-control').attr('disabled', true);
+
+    // See the comment in showTaskInfo() for clarification.
+
+    var ok = function () {
+      $cancelButton.off('click', cancel);
+
+      task.$timetableSuggestionEntry.replaceWith(renderTimetableEntry(task));
+    };
+
+    var cancel = function () {
+      $okButton.off('click', ok);
+    };
+
+    $($okButton, $modal).one('click', ok);
+    $($cancelButton, $modal).one('click', cancel);
+
+    $modal.modal({
+      backdrop: false
+    });
+  };
+}());
+
+
 var showTipOfTheDay = function () {
   var $modal = $('#tip-of-the-day');
 
@@ -364,6 +447,7 @@ $(function () {
   setUpDragAndDrop();
   setUpQuickTaskActions();
   setUpExistingTasks();
+  setUpTimetable();
 
   $(window).resize(_.throttle(fixSizes, 100));
 

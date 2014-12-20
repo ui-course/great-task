@@ -85,6 +85,11 @@
 				<i class="fa fa-caret-down span-down"></i>
 			</div>
 		</script>
+		<script type="text/template" id="timetable-suggestion-entry-template">
+			<div class="panel task-yellow task-size-${duration} timetable-entry suggestion">
+				<%= text %>
+			</div>
+		</script>
 	</head>
 	<body>
 		<div class="row">
@@ -311,6 +316,34 @@
 						<h4 class="modal-title"></h4>
 					</div>
 					<div class="modal-body">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="cancel btn btn-default" data-dismiss="modal">Отмена</button>
+						<button type="button" class="ok btn btn-primary" data-dismiss="modal">OK</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" role="dialog" id="suggestion-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="suggestion-modal-info-header">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#suggestion-modal-info-body" aria-expanded="true" aria-controls="suggestion-modal-info-body" id="suggestion-modal-title"></a>
+									</h4>
+								</div>
+								<div id="suggestion-modal-info-body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="suggestion-modal-info-header">
+									<div class="panel-body task-info">
+									</div>
+								</div>
+							</div>
+						</div>
+						<p>
+							Добавить предложенную задачу в расписание?
+						</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="cancel btn btn-default" data-dismiss="modal">Отмена</button>
