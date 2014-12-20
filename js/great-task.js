@@ -248,6 +248,8 @@ var setUpExistingTasks = function () {
  */
 var showTaskInfo = (function () {
   var $modal = $('#task-info-modal');
+  var $okButton = $('button.ok', $modal);
+  var $cancelButton = $('button.cancel', $modal);
 
   return function (task) {
     $('.modal-title', $modal).text(task.text);
@@ -257,6 +259,22 @@ var showTaskInfo = (function () {
       stopTime: task.stopTime || '',
       text: task.description || ''
     }));
+
+    var ok = function () {
+      $cancelButton.off('click', cancel);
+
+      // Assign back.
+      task.startTime = $('.task-toolbar-starttime', $modal).val();
+      task.stopTime = $('.task-toolbar-stoptime', $modal).val();
+      task.description = $('.task-toolbar-memo', $modal).val();
+    };
+
+    var cancel = function () {
+      $okButton.off('click', ok);
+    };
+
+    $($okButton, $modal).one('click', ok);
+    $($cancelButton, $modal).one('click', cancel);
 
     $modal.modal({
       backdrop: false
@@ -268,7 +286,7 @@ var showTaskInfo = (function () {
 var showTipOfTheDay = function () {
   var $modal = $('#tip-of-the-day');
 
-  $modal.on('shown.bs.modal', function () {
+  $modal.one('shown.bs.modal', function () {
     $('body').keydown(function handler(event) {
       if (event.which == 13 || event.which == 27) {
         // [enter] or [esc]
