@@ -218,3 +218,22 @@ div.label {
 .add-task input {
     width: 100% !important;
 }
+
+.timetable-entry {
+    position: relative;
+    cursor: default;
+}
+
+.timetable-entry .span-up {
+    position: absolute;
+    top: 0;
+    right: 3px;
+    cursor: pointer;
+}
+
+.timetable-entry .span-down {
+    position: absolute;
+    bottom: 0;
+    right: 3px;
+    cursor: pointer;
+}

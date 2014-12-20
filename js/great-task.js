@@ -7,6 +7,8 @@ var taskTemplate = _.template($('#task-template').text().trim(), null, {
 
 var taskInfoTemplate = _.template($('#task-info-template').text().trim());
 
+var timetableEntryTemplate = _.template($('#timetable-entry-template').text().trim());
+
 
 var tags = {
   friends: {
@@ -94,6 +96,39 @@ var renderTaskInfo = function (task) {
 };
 
 
+var renderTimetableEntry = function (task) {
+  var $entry = $(timetableEntryTemplate(task));
+
+  $entry.click(function () {
+    showTaskInfo(task);
+  });
+
+  var makeLonger = function () {
+    $entry.removeClass('task-size-' + task.duration);
+    task.duration += 1;
+    $entry.addClass('task-size-' + task.duration);
+  };
+
+  var moveUp = function () {
+    // BAD BAD BAD
+    $entry.parent().parent().prev().find('td').append($entry);
+  };
+
+  $('.span-up', $entry).click(function (event) {
+    makeLonger();
+    moveUp();
+    event.stopPropagation();
+  });
+
+  $('.span-down', $entry).click(function (event) {
+    makeLonger();
+    event.stopPropagation();
+  });
+
+  return $entry;
+};
+
+
 var guid = (function () {
   var id = 0;
 
@@ -147,6 +182,19 @@ var setUpDragAndDrop = function () {
 
       var task = tasks[ui.draggable.data('taskid')];
       $('.list-group', this).append(renderTask(task));
+    }
+  });
+
+  $('.time-table td').droppable({
+    accept: '.task',
+
+    drop: function (event, ui) {
+      var task = tasks[ui.draggable.data('taskid')];
+
+      // Set default duration.
+      task.duration = task.duration || 1;
+
+      $(this).append(renderTimetableEntry(task));
     }
   });
 };

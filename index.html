@@ -55,6 +55,13 @@
 				</div>
 			</div>
 		</script>
+		<script type="text/template" id="timetable-entry-template">
+			<div class="panel task-light-blue task-size-${duration} timetable-entry">
+				<%= text %>
+				<i class="fa fa-caret-up span-up"></i>
+				<i class="fa fa-caret-down span-down"></i>
+			</div>
+		</script>
 	</head>
 	<body>
 		<div class="row">
@@ -102,21 +109,13 @@
 											<td>06:00</td>
 										</tr>
 										<tr>
-											<td>07:00
-												<div class="panel task-light-blue task-size-2">
-													Зарядка, завтрак
-												</div>
-											</td>
+											<td>07:00</td>
 										</tr>
 										<tr>
 											<td>08:00</td>
 										</tr>
 										<tr>
-											<td>09:00
-												<div class="panel task-light-blue task-size-3">
-													Подготовка к экзамену
-												</div>
-											</td>
+											<td>09:00</td>
 										</tr>
 										<tr>
 											<td>10:00</td>
@@ -131,22 +130,13 @@
 											<td>13:00</td>
 										</tr>
 										<tr>
-											<td>14:00
-												<div class="panel task-light-blue task-size-2">
-													Прогулка с собакой
-													<span class="label label-primary">Здоровье</span>
-												</div>
-											</td>
+											<td>14:00</td>
 										</tr>
 										<tr>
 											<td>15:00</td>
 										</tr>
 										<tr>
-											<td>16:00
-												<div class="panel task-light-blue task-size-3">
-													Подготовиться к контрольной
-												</div>
-											</td>
+											<td>16:00</td>
 										</tr>
 										<tr>
 											<td>17:00</td>
@@ -158,12 +148,7 @@
 											<td>19:00</td>
 										</tr>
 										<tr>
-											<td>20:00
-												<div class="panel task-light-blue task-size-1">
-													Приготовить ужин
-													<span class="label label-primary">Готовка</span>
-												</div>
-											</td>
+											<td>20:00</td>
 										</tr>
 										<tr>
 											<td>21:00</td>
