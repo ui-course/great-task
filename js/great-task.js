@@ -118,6 +118,10 @@ var renderTaskInfo = function (task) {
 
   var $tags = $taskInfo.filter('.tags');
 
+  $('.label', $tags).click(function () {
+    $(this).toggleClass('selected');
+  });
+
   $('.label', $tags).filter(function () {
     var tagValue = tags[$(this).data('tag')].value;
     return task.tags.some(function (tag) {
