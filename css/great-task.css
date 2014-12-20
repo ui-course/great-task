@@ -82,8 +82,8 @@ body {
 
 .task-yellow {
 	color: #31708f;
-	background-color: #dceb74;
-	border-color: #91B818;
+	background-color: rgba(136, 136, 136, 0.5);
+	border-color: #A6A6A6;
 }
 
 .panel.task-size-1 {
