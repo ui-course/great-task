@@ -307,6 +307,27 @@ var setUpExistingTasks = function () {
 
 
 /**
+ * Set up existing timetable entries.
+ */
+var setUpTimetable = function () {
+  // Child number below are hard-coded.
+  // The rule is, nth-child(X+2) gets you to X o'clock.
+
+  // Set essay task for 1 hour at 11:00.
+  var essayTask = _.extend(tasks[2], { duration: 1});
+  $('.time-table tr:nth-child(13) td').append(renderTimetableEntry(essayTask));
+
+  // Set job task for 3 hours 17:00-20:00.
+  var jobTask = _.extend(tasks[3], { duration: 3 });
+  $('.time-table tr:nth-child(19) td').append(renderTimetableEntry(jobTask));
+
+  // Set dog task as a suggestion at 20:00.
+  var dogTask = _.extend(tasks[4], { duration: 1 });
+  $('.time-table tr:nth-child(21) td').append(renderTimetableSuggestionEntry(dogTask));
+};
+
+
+/**
  * Open modal window with information about the task.
  *
  * @arg {Task} task
@@ -426,6 +447,7 @@ $(function () {
   setUpDragAndDrop();
   setUpQuickTaskActions();
   setUpExistingTasks();
+  setUpTimetable();
 
   $(window).resize(_.throttle(fixSizes, 100));
 
