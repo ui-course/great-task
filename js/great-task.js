@@ -140,6 +140,11 @@ var renderTimetableSuggestionEntry = function (task) {
     showSuggestion(task);
   });
 
+  $('.add-suggestion', $entry).click(function (event) {
+    $entry.replaceWith(renderTimetableEntry(task));
+    event.stopPropagation();
+  });
+
   return $entry;
 };
 

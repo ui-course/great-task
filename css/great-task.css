@@ -251,3 +251,7 @@ div.label {
     font-style: italic;
     cursor: pointer;
 }
+
+.add-suggestion {
+    float: right;
+}
