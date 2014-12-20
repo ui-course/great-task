@@ -270,3 +270,7 @@ div.label {
 .badge {
     float: right;
 }
+
+.tag-panel .panel-heading {
+    cursor: pointer;
+}

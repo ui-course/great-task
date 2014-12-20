@@ -370,6 +370,16 @@ var setUpTimetable = function () {
 
 
 /**
+ * Set up existing tag-lists.
+ */
+var setUpLists = function () {
+  $('.tag-panel .panel-heading').mousedown(function () {
+    $('a', this).click();
+  });
+};
+
+
+/**
  * Open modal window with information about the task.
  *
  * @arg {Task} task
@@ -494,6 +504,7 @@ $(function () {
   setUpQuickTaskActions();
   setUpExistingTasks();
   setUpTimetable();
+  setUpLists();
 
   $(window).resize(_.throttle(fixSizes, 100));
 
