@@ -54,7 +54,9 @@ var tasks = [
   },
   {
     id: 4,
-    text: 'Прогулка с собакой'
+    text: 'Прогулка с собакой',
+    repeat_days: '',
+    description: 'Гуляем по Восточному парку, вдоль зелёных фонарей. Встреча с тренером у фонтана.'
   },
   {
     id: 5,
@@ -500,6 +502,9 @@ var showSuggestion = (function () {
 
     // Disable all input fields.
     $('.task-info .form-control').attr('disabled', true);
+
+    // Yeah, hard-code. Deadline is coming!
+    $('.task-toolbar-repeat_days :nth-child(2)', $modal).attr('selected', true);
 
     // See the comment in showTaskInfo() for clarification.
 
