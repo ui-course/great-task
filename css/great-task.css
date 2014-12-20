@@ -145,6 +145,7 @@ body {
 
 .offset-from-left {
 	margin-bottom: -1px;
+    margin-left: -30px;
 }
 
 .task {
@@ -254,4 +255,14 @@ div.label {
 
 .add-suggestion {
     float: right;
+}
+
+.task .edit {
+    float: right;
+    font-size: 18px;
+}
+
+.task.done {
+    font-style: italic;
+    text-decoration: line-through;
 }

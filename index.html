@@ -16,11 +16,12 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<script type="text/template" id="task-template">
-			<li class="list-group-item task" data-taskid="${task.id}">
+			<li class="list-group-item task <% if (task.done) print('done') %>" data-taskid="${task.id}">
 				<%= task.text %>
 				<% _.forEach(task.tags || [], function (tag) { %>
 				<span class="label ${tag.cssClass}"><%= tag.value %></span>
 				<% }); %>
+				<i class="fa fa-pencil edit"></i>
 			</li>
 		</script>
 		<script type="text/template" id="task-info-template">
@@ -235,12 +236,19 @@
 								<span class="badge">3</span>
 							</p>
 							<ul class="offset-from-left task-list" id="unsorted">
-								<li class="list-group-item task" data-taskid="0">Поговорить с Владимиром</li>
+								<li class="list-group-item task" data-taskid="0">
+									Поговорить с Владимиром
+									<i class="fa fa-pencil edit"></i>
+								</li>
 								<li class="list-group-item task" data-taskid="1">
 									Купить подарок на НГ
 									<span class="label label-danger">срочно</span>
+									<i class="fa fa-pencil edit"></i>
 								</li>
-								<li class="list-group-item task" data-taskid="2">Написать черновик эссе</li>
+								<li class="list-group-item task" data-taskid="2">
+									Написать черновик эссе
+									<i class="fa fa-pencil edit"></i>
+								</li>
 							</ul>
 
 							<p href="#" class="list-group-item main-tag">
@@ -252,11 +260,16 @@
 									Доделать что-то очень важное
 									<span class="label label-info">работа</span>
 									<span class="label label-danger">срочно</span>
+									<i class="fa fa-pencil edit"></i>
 								</li>
-								<li class="list-group-item task" data-taskid="4">Прогулка с собакой</li>
+								<li class="list-group-item task" data-taskid="4">
+									Прогулка с собакой
+									<i class="fa fa-pencil edit"></i>
+								</li>
 								<li class="list-group-item task" data-taskid="5">
 									Клуб «Охотник», вечерний покер
 									<span class="label label-success">друзья</span>
+									<i class="fa fa-pencil edit"></i>
 								</li>
 							</ul>
 
@@ -275,10 +288,12 @@
 										<li class="list-group-item task" data-taskid="7">
 											Вывести расчётную формулу
 											<span class="label label-warning">учёба</span>
+											<i class="fa fa-pencil edit"></i>
 										</li>
 										<li class="list-group-item task" data-taskid="8">
 											Написать программу
 											<span class="label label-warning">учёба</span>
+											<i class="fa fa-pencil edit"></i>
 										</li>
 									</ul>
 								</li>
@@ -286,6 +301,7 @@
 
 								<li class="list-group-item task" data-taskid="9">
 									Подготовить доклад к конференции
+									<i class="fa fa-pencil edit"></i>
 								</li>
 							</ul>
 						</div>

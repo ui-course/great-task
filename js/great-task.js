@@ -79,12 +79,31 @@ var tasks = [
   }
 ];
 
+var listenTask = function (task, listener) {
+  task.listeners = task.listeners || [];
+  task.listeners.push(listener);
+};
+
+var markDone = function (task) {
+  task.done = true;
+  task.listeners.forEach(Function.call.bind(Function.call));
+};
+
 
 var renderTask = function (task) {
   var $task = $(taskTemplate(task));
 
-  $task.click(function () {
+  $('.edit', $task).click(function (event) {
     showTaskInfo(task);
+    event.stopPropagation();
+  });
+
+  listenTask(task, function () {
+    $task.toggleClass('done');
+  });
+
+  $task.click(function () {
+    markDone(task);
   });
 
   return $task;
@@ -306,9 +325,25 @@ var setUpQuickTaskActions = function () {
  * Sets up handlers for existing tasks.
  */
 var setUpExistingTasks = function () {
-  $('.task').click(function () {
-    var task = tasks[$(this).data('taskid')];
-    showTaskInfo(task);
+  // TODO(eush77): Once it becomes clear what the the interface should look like,
+  // existing tasks will be auto-generated at the start.
+  $('.task').each(function () {
+    var $task = $(this);
+    var task = tasks[$task.data('taskid')];
+
+    $('.edit', $task).click(function () {
+      showTaskInfo(task);
+      event.stopPropagation();
+    });
+
+    listenTask(task, function () {
+      $task.toggleClass('done');
+    });
+
+    $task.click(function () {
+      task.done = true;
+      markDone(task);
+    });
   });
 };
 
