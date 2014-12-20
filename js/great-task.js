@@ -211,7 +211,9 @@ var setUpQuickTaskActions = function () {
     id: guid(),
     startTime: '',
     stopTime: '',
-    text: ''
+    text: '',
+    repeat_times: '',
+    repeat_days: '',
   }));
   fixControls($toolbar);
 
@@ -305,6 +307,8 @@ var showTaskInfo = (function () {
       id: guid(),
       startTime: task.startTime || '',
       stopTime: task.stopTime || '',
+      repeat_times: task.repeat_times || '',
+      repeat_days: task.repeat_days || '',
       text: task.description || ''
     }));
 

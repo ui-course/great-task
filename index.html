@@ -48,6 +48,29 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="task-toolbar-repeat_times" class="col-sm-5 control-label">Число повторений</label>
+					<div class="col-sm-7 no-left-pad">
+						<select id="task-toolbar-repeat_times" class="form-control">
+							<option>1 раз</option>
+							<option>2 раза</option>
+							<option>3 раза</option>
+							<option>4 раза</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="task-toolbar-repeat_days" class="col-sm-5 control-label">Регулярность</label>
+					<div class="col-sm-7 no-left-pad">
+						<select id="task-toolbar-repeat_days" class="form-control">
+							<option>Нет</option>
+							<option>В день</option>
+							<option>В неделю</option>
+							<option>В месяц</option>
+							<option>В год</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="task-toolbar-memo-${id}" class="col-sm-5 control-label">Описание</label>
 					<div class="col-sm-7 no-left-pad">
 						<textarea id="task-toolbar-memo-${id}" class="form-control task-toolbar-memo" rows="3"><%= text %></textarea>
@@ -298,10 +321,10 @@
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/i18n/jquery-ui-timepicker-ru.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/i18n/jquery-ui-timepicker-ru.js"></script>
 		<script src="js/great-task.js"></script>
 	</body>
 </html>
