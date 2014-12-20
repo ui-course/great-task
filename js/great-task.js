@@ -252,6 +252,8 @@ var setUpQuickTaskActions = function () {
       tags: activeTags,
       startTime: $('.task-toolbar-starttime', $toolbar).val(),
       stopTime: $('.task-toolbar-stoptime', $toolbar).val(),
+      repeat_times: $('.task-toolbar-repeat_times', $toolbar).val(),
+      repeat_days: $('.task-toolbar-repeat_days', $toolbar).val(),
       description: $('.task-toolbar-memo', $toolbar).val()
     };
     task.id = tasks.push(task) - 1;
@@ -364,6 +366,8 @@ var showTaskInfo = (function () {
       // Assign back.
       task.startTime = $('.task-toolbar-starttime', $modal).val();
       task.stopTime = $('.task-toolbar-stoptime', $modal).val();
+      task.repeat_days = $('.task-toolbar-repeat_days', $modal).val();
+      task.repeat_times = $('.task-toolbar-repeat_times', $modal).val();
       task.description = $('.task-toolbar-memo', $modal).val();
     };
 
@@ -400,6 +404,8 @@ var showSuggestion = (function () {
       id: guid(),
       startTime: task.startTime || '',
       stopTime: task.stopTime || '',
+      repeat_times: task.repeat_times || '',
+      repeat_days: task.repeat_days || '',
       text: task.description || ''
     }));
 
